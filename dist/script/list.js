@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var list = {};
+list.get = {};
+list.post = {};
 var app = {
     get: function get(path, handle) {
         list.get[path] = handle;
@@ -11,7 +13,6 @@ var app = {
     post: function post(path, handle) {
         list.post[path] = handle;
     }
-
 };
 exports.default = app;
 exports.list = list;
