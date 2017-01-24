@@ -34,12 +34,12 @@ function start(route, list) {
                     break;
                 case 'post':
                     //获取post
-                    var postString = void 0;
+                    var postString = '';
                     req.on('data', function (chunk) {
                         postString += chunk;
                     });
                     req.on('end', function () {
-                        console.log(postString);
+                        //console.log(postString);
                         req.body = _querystring2.default.parse(postString);
                         route(list, pathname, method, req, res);
                     });

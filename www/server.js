@@ -16,12 +16,12 @@ function start(route,list) {
                 break;
             case 'post':
                 //获取post
-                let postString;
+                let postString = '';
                 req.on('data',(chunk) => {
                     postString += chunk;
                 })
                 req.on('end',() => {
-                    console.log(postString);
+                    //console.log(postString);
                     req.body = querystring.parse(postString);
                     route(list, pathname, method, req, res);
                 })
