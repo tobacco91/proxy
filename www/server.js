@@ -5,22 +5,30 @@ import querystring from 'querystring';
 function start(route,list) {
     function onRequst(req, res) {
         let pathname = url.parse(req.url).pathname;
-        //获取get参数
-        let query = url.parse(req.url).query;
-        let string = querystring.parse(query);
-        req.params = string;
-        let postString;
-        //获取post
-        req.on('data',(chunk) => {
-            postString += chunk;
-        })
-        req.end('end',() => {
-            req.body = querystring.parse(postString);
-        })
         let method = req.method.toLowerCase();
+        switch (method) {
+            case 'get':
+                //获取get参数
+                let query = url.parse(req.url).query;
+                let string = querystring.parse(query);
+                req.params = string;
+                route(list, pathname, method, req, res);
+                break;
+            case 'post':
+                //获取post
+                let postString;
+                req.on('data',(chunk) => {
+                    postString += chunk;
+                })
+                req.on('end',() => {
+                    console.log(postString);
+                    req.body = querystring.parse(postString);
+                    route(list, pathname, method, req, res);
+                })
+                break;
+        }
         console.log("Request for " + pathname + " received.");
-        //req res
-        route(list, pathname, method, req, res);
+        //回复
         res.write('200');
         res.end();
     }

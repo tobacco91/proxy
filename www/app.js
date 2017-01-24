@@ -1,8 +1,8 @@
 'use strict';   
 import app from './list.js';
 let handle = function() {
-    app.get('/aaa',function(req, res) {
-        console.log(req.params);
+    app.post('/aaa',function(req, res) {
+        console.log(req.body);
     });
 }
 export default handle;
