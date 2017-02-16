@@ -1,6 +1,6 @@
 'use strict';
 
-var _app = require('./app.js');
+var _app = require('../app.js');
 
 var _app2 = _interopRequireDefault(_app);
 

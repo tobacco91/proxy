@@ -39,7 +39,6 @@ function start(route, list) {
                         postString += chunk;
                     });
                     req.on('end', function () {
-                        //console.log(postString);
                         req.body = _querystring2.default.parse(postString);
                         route(list, pathname, method, req, res);
                     });

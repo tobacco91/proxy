@@ -1,6 +1,6 @@
 import handle from './app.js';
-import route from './route.js';
-import server from './server.js';
-import {list} from './list.js';
+import route from './lib/route.js';
+import server from './lib/server.js';
+import {list} from './lib/list.js';
 handle();
-server(route, list);
+server(route, list); 

@@ -21,7 +21,6 @@ function start(route,list) {
                     postString += chunk;
                 })
                 req.on('end',() => {
-                    //console.log(postString);
                     req.body = querystring.parse(postString);
                     route(list, pathname, method, req, res);
                 })

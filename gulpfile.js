@@ -5,10 +5,12 @@ var plumber = require('gulp-plumber');
 var src = './www';
 var dist = './dist';
 var srcMatch = {
-    script: src + '/*.js'
+    script: src + '/lib/*.js',
+    app: src + '/*.js'
 };
 var distPath = {
-    script: dist + '/script/'
+    script: dist + '/lib/',
+    app: dist + '/'
 };
 
 
@@ -18,11 +20,16 @@ var compile_script = function () {
         .pipe(gulpif('*.js', babel({presets: ['es2015']})))
         .pipe(gulp.dest(distPath.script));
 }
-
+var compile_app = function () {
+    return gulp.src(srcMatch.app)
+        .pipe(plumber())
+        .pipe(gulpif('*.js', babel({presets: ['es2015']})))
+        .pipe(gulp.dest(distPath.app));
+}
 
 
 var watch_script = watch_type('script', compile_script);
-
+var watch_app = watch_type('app', compile_app);
 
 function watch_type (type, fn) {
     fn();
@@ -31,5 +38,5 @@ function watch_type (type, fn) {
     }
 }
 gulp.task('compile_script', watch_script);
-
-gulp.task('watch', ['compile_script']);
+gulp.task('compile_app', watch_app);
+gulp.task('watch', ['compile_script', 'compile_app']);
