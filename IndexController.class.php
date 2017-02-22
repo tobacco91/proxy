@@ -119,7 +119,7 @@ class IndexController extends AddonsController
                 $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?&appid=' . $info ['appid'] . '&secret=' . $info ['secret'] . '&code=' . I('get.code') . '&grant_type=authorization_code';
                 $content = file_get_contents($url);
                 $content = json_decode($content, true);
-                $openId = $content['openid'];
+                $openId = $content['openid']; 
             } else {
                 $redirect_uri = addons_url('FunFest://index/index');
                 $redirect_uri = urlencode($redirect_uri);

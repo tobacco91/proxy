@@ -12,9 +12,9 @@ var _url = require('url');
 
 var _url2 = _interopRequireDefault(_url);
 
-var _querystring = require('querystring');
+var _means = require('../expand/means.js');
 
-var _querystring2 = _interopRequireDefault(_querystring);
+var _means2 = _interopRequireDefault(_means);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,30 +22,7 @@ function start(route, list) {
     function onRequst(req, res) {
         var pathname = _url2.default.parse(req.url).pathname;
         var method = req.method.toLowerCase();
-
-        (function () {
-            switch (method) {
-                case 'get':
-                    //获取get参数
-                    var query = _url2.default.parse(req.url).query;
-                    var string = _querystring2.default.parse(query);
-                    req.params = string;
-                    route(list, pathname, method, req, res);
-                    break;
-                case 'post':
-                    //获取post
-                    var postString = '';
-                    req.on('data', function (chunk) {
-                        postString += chunk;
-                    });
-                    req.on('end', function () {
-                        req.body = _querystring2.default.parse(postString);
-                        route(list, pathname, method, req, res);
-                    });
-                    break;
-            }
-        })();
-
+        (0, _means2.default)(method, req, res, route, list, pathname);
         console.log("Request for " + pathname + " received.");
         //回复
         res.write('200');

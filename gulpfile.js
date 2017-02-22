@@ -5,11 +5,11 @@ var plumber = require('gulp-plumber');
 var src = './www';
 var dist = './dist';
 var srcMatch = {
-    script: src + '/lib/*.js',
+    script: src + '/**/*.js',
     app: src + '/*.js'
 };
 var distPath = {
-    script: dist + '/lib/',
+    script: dist + '/',
     app: dist + '/'
 };
 
