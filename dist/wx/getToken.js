@@ -23,7 +23,7 @@ function getToken(code) {
   var params = {
     appid: _config2.default.appId,
     secret: _config2.default.appSecret,
-    code: 'code',
+    code: code,
     grant_type: 'authorization_code'
   };
   var options = {

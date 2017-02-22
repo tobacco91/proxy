@@ -5,6 +5,7 @@ import getCode from './wx/getCode.js';
 import getToken from './wx/getToken.js';
 import getUserInfo from './wx/getUserInfo.js';
 import {get_cookie,set_cookie} from './expand/cookie'; 
+import wxPush from './wx/wxPush.js';
 let url = 'http://5yi8r5.natappfree.cc/wx';
 let handle = function() {
     app.get('/index',(req,res) => {
@@ -36,7 +37,7 @@ let handle = function() {
         console.log(getToken(req.query.code))
     }); 
     app.post('/aaa',(req, res) => {
-        console.log(req.body);
+        wxPush(req.body);
     });
     app.get('/abc',(req,res) => {
         console.log(req.query);

@@ -33,12 +33,15 @@ var means = function means(method, req, res, route, list, pathname) {
                 req.on('end', function () {
                     try {
                         req.body = JSON.parse(postString);
-                        // console.log(req.body);
-                        route(list, pathname, method, req, res);
-                        return true;
+                        // route(list, pathname, method, req, res);
+                        //return true;
                     } catch (e) {
-                        return false;
+                        req.body = postString;
+                        //console.log(postString);
+
+                        //return false;
                     }
+                    route(list, pathname, method, req, res);
                 });
                 break;
         }

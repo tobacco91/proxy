@@ -7,12 +7,12 @@ function getToken(code) {
   let params = {
     appid: config.appId,
     secret: config.appSecret,
-    code: 'code',
+    code: code,
     grant_type: 'authorization_code'
   };
   let options = {
     method: 'get',
-    url: reqUrl+querystring.stringify(params)
+    url: reqUrl + querystring.stringify(params)
   };
   console.log(options.url);
   return new Promise((resolve, reject) => {

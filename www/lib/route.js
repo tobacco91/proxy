@@ -1,5 +1,5 @@
 'use strict';
-function Route(list, pathname, method, req, res) {
+function route(list, pathname, method, req, res) {
     console.log('route'+ pathname);
     if (typeof list[method][pathname] === 'function') {
         return list[method][pathname](req, res);
@@ -9,4 +9,4 @@ function Route(list, pathname, method, req, res) {
     }
 }
 
-export default Route;
+export default route;

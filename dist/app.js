@@ -26,6 +26,10 @@ var _getUserInfo2 = _interopRequireDefault(_getUserInfo);
 
 var _cookie = require('./expand/cookie');
 
+var _wxPush = require('./wx/wxPush.js');
+
+var _wxPush2 = _interopRequireDefault(_wxPush);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var url = 'http://5yi8r5.natappfree.cc/wx';
@@ -59,7 +63,7 @@ var handle = function handle() {
         console.log((0, _getToken2.default)(req.query.code));
     });
     _list2.default.post('/aaa', function (req, res) {
-        console.log(req.body);
+        (0, _wxPush2.default)(req.body);
     });
     _list2.default.get('/abc', function (req, res) {
         console.log(req.query);
