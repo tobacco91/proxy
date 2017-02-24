@@ -4,19 +4,23 @@ let wxPush = function(postString) {
     return new Promise((resolve, reject) => {
             xml2js.parseString(postString, {explicitArray : false}, (error, json) => {
             console.log(json);
-            if(json.xml.ToUserName != 'undefined' && json.xml.FromUserName != 'undefined' && json.xml.CreateTime: != 'undefined') {
+            if(json.xml.ToUserName != 'undefined' && json.xml.FromUserName != 'undefined' && json.xml.CreateTime != 'undefined') {
                 switch (json.xml.MsgType) {
-                    case 'text':
+                    case 'text' :
                         //text
-                        json.xml;
-                    break;
+                        resolve('text');
+                        console.log('text');
+                        console.log(json.xml);
+                        break;
                     case 'video':
                         if (json.xml.ThumbMediaId === 'undefined') {
                             //audio音频
-                            json.xml;
+                            resolve('audio音频');
+                            console.log('audio');
+                            console.log(json.xml);
                         } else {
                             //video视频
-                            json.xml;
+                            //json.xml;
                         }
                         break;
                     case 'image':

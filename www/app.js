@@ -37,11 +37,18 @@ let handle = function() {
         console.log(getToken(req.query.code))
     }); 
     app.post('/aaa',(req, res) => {
-        wxPush(req.body);
+        switch (req.msType) {
+            case 'json' :
+                console.log(req.body);
+                break;
+            case 'xml' :
+                wxPush(req.xml);
+                break;
+        }
     });
-    app.get('/abc',(req,res) => {
-        console.log(req.query);
-        res.write('abcdefg');
-    });
+    // app.get('/abc',(req,res) => {
+    //     console.log(req.query);
+    //     res.write('abcdefg');
+    // });
 }
 export default handle;

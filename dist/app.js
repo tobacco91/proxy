@@ -63,11 +63,18 @@ var handle = function handle() {
         console.log((0, _getToken2.default)(req.query.code));
     });
     _list2.default.post('/aaa', function (req, res) {
-        (0, _wxPush2.default)(req.body);
+        switch (req.msType) {
+            case 'json':
+                console.log(req.body);
+                break;
+            case 'xml':
+                (0, _wxPush2.default)(req.xml);
+                break;
+        }
     });
-    _list2.default.get('/abc', function (req, res) {
-        console.log(req.query);
-        res.write('abcdefg');
-    });
+    // app.get('/abc',(req,res) => {
+    //     console.log(req.query);
+    //     res.write('abcdefg');
+    // });
 };
 exports.default = handle;
