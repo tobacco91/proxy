@@ -1,0 +1,52 @@
+'use strict';
+import redis from 'redis';
+let createRedisClient = function() {
+    let _redis = redis.createClient();
+    _redis.on('error', function(err) {
+        console.log(err);
+    });
+    return _redis;
+}
+/**
+session = {
+    from : user/track
+    type : redis,
+    key : random,
+    value : uerinfo
+}
+*/
+let set_session = function(session) {
+    switch (session.type) {
+        case 'redis' :
+            console.log('redis');
+            createRedisClient().hset(session.from, session.key, session.value);
+            break;
+        case 'file' :
+            break;
+    }
+}
+/**
+session = {
+    from : user/track
+    type : redis,
+    key : random
+}
+*/
+let get_session = function(session) {
+    return new Promise((resolve, reject) => {
+        switch (session.type) {
+            case 'radis' :
+                createRedisClient().hget(session.from, session.key, (err, data) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        resolve(data);
+                    }
+                });
+                break;
+            case 'file' :
+                break;
+        }
+    });
+}
+export {set_session,get_session};

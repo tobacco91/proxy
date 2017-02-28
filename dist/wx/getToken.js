@@ -30,11 +30,11 @@ function getToken(code) {
     method: 'get',
     url: reqUrl + _querystring2.default.stringify(params)
   };
-  console.log(options.url);
+  //console.log(options.url);
   return new Promise(function (resolve, reject) {
     (0, _request2.default)(options, function (err, res, body) {
       if (res) {
-        console.log(body);
+        //console.log(body)
         resolve(body);
       } else {
         reject(err);

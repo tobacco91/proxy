@@ -8,8 +8,7 @@ function getCode(res, redirect_uri) {
         redirect_uri : redirect_uri,
         response_type : 'code',
         scope : config.scope,
-        state : 1,
-        connect_redirect : 1
+        state : 1
     };
     res.writeHead(302, {
       'Location': reqUrl + querystring.stringify(params)
