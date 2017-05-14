@@ -22,7 +22,8 @@ let handle = function() {
                     return getUserInfo(data.access_token,data.openid);
                 }).then((body)=> {
                     let random = Math.random();
-                    console.log(random);
+                    console.log('user'+random);
+                    console.log('track'+req.number);
                     set_cookie(res,'user_id = '+ random + ';');
                     set_session({
                         from : 'user',
@@ -53,12 +54,7 @@ let handle = function() {
                         value : 'body'
                     });
         } else {
-            set_session({
-                        from : 'user',
-                        type : 'redis',
-                        key  : 'random',
-                        value : 'body'
-                    });
+            
             console.log(get_cookie(req));
  
         }

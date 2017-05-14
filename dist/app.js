@@ -49,7 +49,8 @@ var handle = function handle() {
                     return (0, _getUserInfo2.default)(data.access_token, data.openid);
                 }).then(function (body) {
                     var random = Math.random();
-                    console.log(random);
+                    console.log('user' + random);
+                    console.log('track' + req.number);
                     (0, _cookie.set_cookie)(res, 'user_id = ' + random + ';');
                     (0, _session.set_session)({
                         from: 'user',

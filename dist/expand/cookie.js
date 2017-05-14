@@ -13,7 +13,7 @@ function get_cookie(req) {
     }
     return cookies;
 };
-//myCookie = 'abc=dadada;ccc=ddd'
+//myCookie : 'abc=dadada;ccc=ddd'
 function set_cookie(res, myCookie) {
     res.writeHead(200, {
         'Set-Cookie': myCookie,
